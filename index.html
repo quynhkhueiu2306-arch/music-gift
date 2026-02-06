@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>屿海专属音乐定制</title>
+<title>专属音乐定制</title>
 <style>
     :root {
         --app-bg: #f5f5f7;
@@ -92,15 +92,15 @@
 
     input[type="text"], textarea {
         width: 100%;
-        padding: 10px;
+        padding: 12px;
         background: var(--input-bg);
         border: 1px solid transparent;
-        border-radius: 8px;
+        border-radius: 10px;
         font-size: 14px;
         box-sizing: border-box;
         -webkit-appearance: none; 
     }
-    textarea { height: 80px; resize: none; }
+    textarea { height: 70px; resize: none; } 
     input:focus, textarea:focus { background: #fff; border-color: #007aff; outline: none; }
 
     .submit-btn {
@@ -121,8 +121,8 @@
 <body>
 
 <div class="container">
-    <h1>🎵屿海专属音乐定制</h1>
-    <p class="subtitle">让故事变成旋律</p>
+    <h1>🎵 屿海专属音乐定制</h1>
+    <p class="subtitle">回答几个小问题，为你写首歌</p>
 
     <div class="card">
         <div class="section-title">Step 1 · 风格选择</div>
@@ -130,94 +130,62 @@
         <div style="margin-bottom: 30px;">
             <label class="label-text">1. 音乐风格 <span class="hint">(单选)</span></label>
             <div class="options-grid">
-                <label class="radio-label">
-                    <input type="radio" name="style" value="流行R&B">
-                    <span class="radio-tile">流行R&B</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="style" value="钢琴抒情">
-                    <span class="radio-tile">钢琴抒情</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="style" value="民谣吉他">
-                    <span class="radio-tile">民谣吉他</span>
-                </label>
-                 <label class="radio-label">
-                    <input type="radio" name="style" value="日系摇滚">
-                    <span class="radio-tile">日系摇滚</span>
-                </label>
-                 <label class="radio-label">
-                    <input type="radio" name="style" value="复古Disco">
-                    <span class="radio-tile">复古Disco</span>
-                </label>
-                 <label class="radio-label">
-                    <input type="radio" name="style" value="古风国风">
-                    <span class="radio-tile">古风国风</span>
-                </label>
+                <label class="radio-label"><input type="radio" name="style" value="流行R&B"><span class="radio-tile">流行R&B</span></label>
+                <label class="radio-label"><input type="radio" name="style" value="钢琴抒情"><span class="radio-tile">钢琴抒情</span></label>
+                <label class="radio-label"><input type="radio" name="style" value="民谣吉他"><span class="radio-tile">民谣吉他</span></label>
+                <label class="radio-label"><input type="radio" name="style" value="日系摇滚"><span class="radio-tile">日系摇滚</span></label>
+                <label class="radio-label"><input type="radio" name="style" value="复古Disco"><span class="radio-tile">复古Disco</span></label>
+                <label class="radio-label"><input type="radio" name="style" value="古风国风"><span class="radio-tile">古风国风</span></label>
             </div>
         </div>
 
         <div style="margin-bottom: 30px;">
             <label class="label-text">2. 情绪基调 <span class="hint">(单选)</span></label>
             <div class="options-grid">
-                <label class="radio-label">
-                    <input type="radio" name="mood" value="温暖治愈">
-                    <span class="radio-tile">☀️ 温暖</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="mood" value="感动催泪">
-                    <span class="radio-tile">💧 感动</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="mood" value="甜蜜浪漫">
-                    <span class="radio-tile">💕 甜蜜</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="mood" value="热血励志">
-                    <span class="radio-tile">🔥 热血</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="mood" value="搞怪有趣">
-                    <span class="radio-tile">😜 搞怪</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="mood" value="Emo孤独">
-                    <span class="radio-tile">🌑 Emo</span>
-                </label>
+                <label class="radio-label"><input type="radio" name="mood" value="温暖治愈"><span class="radio-tile">☀️ 温暖</span></label>
+                <label class="radio-label"><input type="radio" name="mood" value="感动催泪"><span class="radio-tile">💧 感动</span></label>
+                <label class="radio-label"><input type="radio" name="mood" value="甜蜜浪漫"><span class="radio-tile">💕 甜蜜</span></label>
+                <label class="radio-label"><input type="radio" name="mood" value="热血励志"><span class="radio-tile">🔥 热血</span></label>
+                <label class="radio-label"><input type="radio" name="mood" value="搞怪有趣"><span class="radio-tile">😜 搞怪</span></label>
+                <label class="radio-label"><input type="radio" name="mood" value="Emo孤独"><span class="radio-tile">🌑 Emo</span></label>
             </div>
         </div>
 
         <div>
             <label class="label-text">3. 人声类型 <span class="hint">(单选)</span></label>
             <div class="options-grid">
-                <label class="radio-label">
-                    <input type="radio" name="voice" value="男声">
-                    <span class="radio-tile">👨 男声</span>
-                </label>
-                <label class="radio-label">
-                    <input type="radio" name="voice" value="女声">
-                    <span class="radio-tile">👩 女声</span>
-                </label>
+                <label class="radio-label"><input type="radio" name="voice" value="男声"><span class="radio-tile">👨 男声</span></label>
+                <label class="radio-label"><input type="radio" name="voice" value="女声"><span class="radio-tile">👩 女声</span></label>
             </div>
         </div>
     </div>
 
     <div class="card">
-        <div class="section-title">Step 2 · 故事填充</div>
+        <div class="section-title">Step 2 · 灵感引导</div>
         
         <div style="margin-bottom: 20px;">
             <label class="label-text">4. 送给谁？ <span style="font-weight:normal; color:#999; margin-left:5px;">(选填)</span></label>
-            <input type="text" id="target" placeholder="不填则默认在歌词里称呼为“你”">
+            <input type="text" id="target" placeholder="不填默认用“你”">
         </div>
 
         <div style="margin-bottom: 20px;">
-            <label class="label-text">5. 关键故事 (写2-3个细节)</label>
-            <textarea id="story" placeholder="例如：记得那年去海边..."></textarea>
+            <label class="label-text">5. 相识时间/初遇的故事 <span class="hint">(自由发挥)</span></label>
+            <textarea id="firstmeet" placeholder="例如：2018年秋天，在学校社团招新的时候，你穿着白衬衫..."></textarea>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label class="label-text">6. 印象最深的场景/地点 <span class="hint">(必填)</span></label>
+            <textarea id="scene" placeholder="引导：第一次旅行去了哪？或者某个难忘的夜晚？"></textarea>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label class="label-text">7. 只有你俩懂的细节/习惯 <span class="hint">(必填)</span></label>
+            <textarea id="detail" placeholder="引导：TA爱喝什么？有什么口头禅？或者小暗号？"></textarea>
         </div>
 
         <div>
-            <label class="label-text">6. 核心金句</label>
-            <input type="text" id="core_msg" placeholder="副歌想说的一句话">
+            <label class="label-text">8. 副歌最想说的一句心里话</label>
+            <input type="text" id="core_msg" placeholder="例如：谢谢你的陪伴 / 希望你做自己">
         </div>
     </div>
 
@@ -235,25 +203,32 @@
         var style = getVal('style');
         var mood = getVal('mood');
         var voice = getVal('voice');
-        // 获取名字，如果为空，则不做处理，后面判断
+        
         var targetInput = document.getElementById('target').value.trim();
-        var story = document.getElementById('story').value;
+        var firstmeet = document.getElementById('firstmeet').value; // 获取初遇故事
+        var scene = document.getElementById('scene').value;
+        var detail = document.getElementById('detail').value;
         var core_msg = document.getElementById('core_msg').value;
 
         if (!style || !mood || !voice) {
             alert("⚠️ 请把第一部分的【风格、情绪、人声】都选上哦！");
             return;
         }
-        if (!story) {
-            alert("⚠️ 请填写关键故事，这是写歌最重要的部分！");
+        if (!scene || !detail) {
+            alert("⚠️ 故事部分（场景、细节）请稍微填一下，这样歌词才生动！");
             return;
         }
 
-        // 逻辑判断：如果没填名字，显示为“未指定”
-        var targetText = targetInput ? targetInput : "未指定 (默认用'你'或通用称呼)";
+        // 逻辑判断
+        var targetText = targetInput ? targetInput : "未指定 (默认用'你')";
+        var meetText = firstmeet ? firstmeet : "未填写";
 
-        var text = `【🎵 定制需求单】\n风格：${style}\n情绪：${mood}\n人声：${voice}\n----------------\n对象：${targetText}\n故事：${story}\n金句：${core_msg}`;
+        // 自动合并故事
+        var fullStory = `1. 相识初遇：${meetText}\n2. 场景记忆：${scene}\n3. 细节习惯：${detail}`;
 
+        var text = `【🎵 定制需求单】\n风格：${style}\n情绪：${mood}\n人声：${voice}\n----------------\n对象：${targetText}\n故事：\n${fullStory}\n金句：${core_msg}`;
+
+        // 复制逻辑
         var textarea = document.createElement("textarea");
         textarea.value = text;
         textarea.style.position = "fixed";
@@ -273,4 +248,3 @@
 
 </body>
 </html>
-
