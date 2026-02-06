@@ -5,178 +5,268 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
 <title>专属音乐定制</title>
 <style>
-    /* --- Apple Style Design Tokens --- */
     :root {
-        --app-bg: #fbfbfd; /* 苹果经典的灰白色背景 */
-        --card-bg: rgba(255, 255, 255, 0.85); /* 半透明磨砂卡片 */
-        --accent-color: #007aff; /* 苹果蓝 */
-        --accent-gradient: linear-gradient(135deg, #007aff, #5856d6); /* 蓝紫渐变 */
-        --text-primary: #1d1d1f;
-        --text-secondary: #86868b;
-        --input-bg: #f2f2f7; /* 苹果输入框背景色 */
-        --success-color: #34c759;
+        --app-bg: #f5f5f7;
+        --card-bg: #ffffff;
+        --accent-color: #007aff;
+        --input-bg: #f2f2f7;
     }
 
     body {
-        font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", Roboto, sans-serif;
+        font-family: -apple-system, BlinkMacSystemFont, sans-serif;
         background-color: var(--app-bg);
-        /* 这是一个微妙的背景光晕效果，增加高级感 */
-        background-image: radial-gradient(circle at 50% 0%, #e3e3f5 0%, var(--app-bg) 60%);
-        color: var(--text-primary);
+        color: #1d1d1f;
         margin: 0;
-        padding: 40px 20px;
+        padding: 15px;
         line-height: 1.5;
-        -webkit-font-smoothing: antialiased; /* 让字体在iOS上更清晰 */
     }
 
-    .container {
-        max-width: 600px;
-        margin: 0 auto;
-    }
+    .container { max-width: 600px; margin: 0 auto; padding-bottom: 40px; }
 
-    /* --- Typography --- */
-    h1.hero-title {
-        text-align: center;
-        font-size: 32px;
-        font-weight: 700;
-        letter-spacing: -0.02em;
-        margin-bottom: 10px;
-        background: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent; /* 文字渐变色 */
-    }
-    p.hero-subtitle {
-        text-align: center;
-        color: var(--text-secondary);
-        font-size: 17px;
-        margin-bottom: 40px;
-        font-weight: 400;
-    }
+    h1 { text-align: center; font-size: 24px; margin-bottom: 5px; color: #000; }
+    p.subtitle { text-align: center; color: #86868b; font-size: 13px; margin-bottom: 20px; }
 
-    /* --- Glassmorphism Card --- */
-    .glass-card {
+    .card {
         background: var(--card-bg);
-        backdrop-filter: blur(20px); /* 核心：磨砂玻璃效果 */
-        -webkit-backdrop-filter: blur(20px);
-        border-radius: 24px;
-        padding: 30px;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.06); /* 极其柔和的投影 */
-        border: 1px solid rgba(255, 255, 255, 0.4);
-    }
-
-    /* --- Sections & Labels --- */
-    .section-title {
-        font-size: 20px;
-        font-weight: 600;
-        margin-top: 0;
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
         margin-bottom: 20px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid rgba(0,0,0,0.05);
-    }
-    .form-group { margin-bottom: 30px; }
-    label.field-label {
-        display: block;
-        font-size: 15px;
-        font-weight: 600;
-        margin-bottom: 12px;
-        color: var(--text-primary);
-    }
-    .hint {
-        display: block;
-        font-size: 13px;
-        color: var(--text-secondary);
-        margin-top: -8px;
-        margin-bottom: 12px;
     }
 
-    /* --- Apple Style Selection Tiles (关键升级) --- */
+    .section-title { font-size: 16px; font-weight: 700; margin-bottom: 20px; border-bottom: 1px solid #f0f0f0; padding-bottom: 8px; }
+    .label-text { font-size: 14px; font-weight: 600; margin-bottom: 10px; display: block; }
+    .hint { font-size: 12px; color: #999; margin-bottom: 10px; display: block; font-weight: normal;}
+
+    /* --- 核心修改 --- */
     .options-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); /* 自动适应排列 */
-        gap: 12px;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 8px;  
+        /* 🔥 这里改成了 30px，非常宽的缝隙 */
+        row-gap: 30px;    
+        margin-bottom: 15px; /* 底部也留出空间 */
     }
-    /* 隐藏原生的丑陋单选框 */
-    .radio-option input[type="radio"] { display: none; }
-    /* 将 Label 设计成高级按钮 */
+    
+    .radio-label {
+        position: relative; 
+        cursor: pointer;
+        width: 100%;
+    }
+
+    .radio-label input[type="radio"] {
+        position: absolute;
+        opacity: 0;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        z-index: 2; 
+        cursor: pointer;
+    }
+
     .radio-tile {
         display: flex;
         align-items: center;
         justify-content: center;
-        padding: 14px 10px;
+        padding: 10px 2px; 
         background: var(--input-bg);
-        border-radius: 14px;
-        font-size: 14px;
-        font-weight: 500;
+        border-radius: 8px;
+        font-size: 12px;
         color: #555;
-        cursor: pointer;
-        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 苹果风格的弹性动画 */
-        border: 2px solid transparent;
-    }
-    /* 选中状态的样式 */
-    .radio-option input[type="radio"]:checked + .radio-tile {
-        background: var(--accent-gradient);
-        color: white;
-        box-shadow: 0 8px 16px rgba(88, 86, 214, 0.25);
-        transform: translateY(-2px); /* 微妙的上浮效果 */
-        font-weight: 600;
+        text-align: center;
+        transition: all 0.2s;
+        border: 1px solid transparent;
+        height: 100%; 
+        white-space: nowrap; 
+        overflow: hidden;    
     }
 
-    /* --- Premium Inputs --- */
+    /* 选中状态 */
+    .radio-label input[type="radio"]:checked + .radio-tile {
+        background: #007aff;
+        color: white;
+        box-shadow: 0 4px 10px rgba(0, 122, 255, 0.3);
+        font-weight: 600;
+        transform: translateY(-2px); /* 选中稍微上浮 */
+    }
+
     input[type="text"], textarea {
         width: 100%;
-        padding: 16px;
+        padding: 10px;
         background: var(--input-bg);
-        border: none; /* 去掉边框，更现代 */
-        border-radius: 14px;
-        font-size: 17px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        font-size: 14px;
         box-sizing: border-box;
-        transition: background 0.3s;
+        -webkit-appearance: none; 
     }
-    input:focus, textarea:focus {
-        outline: none;
-        background: #eaeaef; /* 聚焦时稍微变深 */
-    }
-    textarea { height: 120px; resize: none; }
+    textarea { height: 80px; resize: none; }
+    input:focus, textarea:focus { background: #fff; border-color: #007aff; outline: none; }
 
-    /* --- Big CTA Button --- */
     .submit-btn {
         width: 100%;
-        padding: 18px;
-        background: var(--accent-gradient);
+        padding: 14px;
+        background: linear-gradient(135deg, #007aff, #0055ff);
         color: white;
         border: none;
-        border-radius: 18px;
-        font-size: 18px;
-        font-weight: 700;
-        cursor: pointer;
-        margin-top: 10px;
-        box-shadow: 0 10px 30px rgba(88, 86, 214, 0.3);
-        transition: transform 0.2s;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        box-shadow: 0 4px 12px rgba(0, 122, 255, 0.25);
     }
-    .submit-btn:active { transform: scale(0.97); }
+    .submit-btn:active { opacity: 0.8; transform: scale(0.98); }
+
 </style>
 </head>
 <body>
 
 <div class="container">
-    <h1 class="hero-title">专属音乐定制</h1>
-    <p class="hero-subtitle">只需几步，让灵感化作旋律</p>
+    <h1>🎵 专属音乐定制</h1>
+    <p class="subtitle">大间距版</p>
 
-    <div class="glass-card">
-        <h2 class="section-title">Step 1 · 定义听感</h2>
-        
-        <div class="form-group">
-            <label class="field-label">1. 你希望是什么音乐流派？</label>
-            <div class="options-grid" id="style-group">
-                <label class="radio-option">
-                    <input type="radio" name="style" value="流行R&B (周杰伦风)">
+    <div class="card">
+        <div class="section-title">Step 1 · 风格选择</div>
+
+        <div style="margin-bottom: 30px;">
+            <label class="label-text">1. 音乐风格 <span class="hint">(单选)</span></label>
+            <div class="options-grid">
+                <label class="radio-label">
+                    <input type="radio" name="style" value="流行R&B">
                     <span class="radio-tile">流行R&B</span>
                 </label>
-                <label class="radio-option">
-                    <input type="radio" name="style" value="深情钢琴抒情">
+                <label class="radio-label">
+                    <input type="radio" name="style" value="钢琴抒情">
                     <span class="radio-tile">钢琴抒情</span>
                 </label>
-                <label class="radio-option">
-                    <input type="radio" name="style" value="清新民谣吉他">
-                    <span class="radio-tile">清新民谣</span>
+                <label class="radio-label">
+                    <input type="radio" name="style" value="民谣吉他">
+                    <span class="radio-tile">民谣吉他</span>
                 </label>
+                 <label class="radio-label">
+                    <input type="radio" name="style" value="日系摇滚">
+                    <span class="radio-tile">日系摇滚</span>
+                </label>
+                 <label class="radio-label">
+                    <input type="radio" name="style" value="复古Disco">
+                    <span class="radio-tile">复古Disco</span>
+                </label>
+                 <label class="radio-label">
+                    <input type="radio" name="style" value="古风国风">
+                    <span class="radio-tile">古风国风</span>
+                </label>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 30px;">
+            <label class="label-text">2. 情绪基调 <span class="hint">(单选)</span></label>
+            <div class="options-grid">
+                <label class="radio-label">
+                    <input type="radio" name="mood" value="温暖治愈">
+                    <span class="radio-tile">☀️ 温暖</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="mood" value="感动催泪">
+                    <span class="radio-tile">💧 感动</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="mood" value="甜蜜浪漫">
+                    <span class="radio-tile">💕 甜蜜</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="mood" value="热血励志">
+                    <span class="radio-tile">🔥 热血</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="mood" value="搞怪有趣">
+                    <span class="radio-tile">😜 搞怪</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="mood" value="Emo孤独">
+                    <span class="radio-tile">🌑 Emo</span>
+                </label>
+            </div>
+        </div>
+
+        <div>
+            <label class="label-text">3. 人声类型 <span class="hint">(单选)</span></label>
+            <div class="options-grid">
+                <label class="radio-label">
+                    <input type="radio" name="voice" value="男声">
+                    <span class="radio-tile">👨 男声</span>
+                </label>
+                <label class="radio-label">
+                    <input type="radio" name="voice" value="女声">
+                    <span class="radio-tile">👩 女声</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="section-title">Step 2 · 故事填充</div>
+        
+        <div style="margin-bottom: 20px;">
+            <label class="label-text">4. 送给谁？</label>
+            <input type="text" id="target" placeholder="Ta的名字">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+            <label class="label-text">5. 关键故事 (写2-3个细节)</label>
+            <textarea id="story" placeholder="例如：记得那年去海边..."></textarea>
+        </div>
+
+        <div>
+            <label class="label-text">6. 核心金句</label>
+            <input type="text" id="core_msg" placeholder="副歌想说的一句话">
+        </div>
+    </div>
+
+    <button class="submit-btn" onclick="generateOrder()">生成定制单并复制</button>
+    <br><br><br>
+</div>
+
+<script>
+    function generateOrder() {
+        function getVal(name) {
+            var checked = document.querySelector('input[name="' + name + '"]:checked');
+            return checked ? checked.value : null;
+        }
+
+        var style = getVal('style');
+        var mood = getVal('mood');
+        var voice = getVal('voice');
+        var target = document.getElementById('target').value;
+        var story = document.getElementById('story').value;
+        var core_msg = document.getElementById('core_msg').value;
+
+        if (!style || !mood || !voice) {
+            alert("⚠️ 请把第一部分的【风格、情绪、人声】都选上哦！");
+            return;
+        }
+        if (!story) {
+            alert("⚠️ 请填写关键故事，这是写歌最重要的部分！");
+            return;
+        }
+
+        var text = `【🎵 定制需求单】\n风格：${style}\n情绪：${mood}\n人声：${voice}\n----------------\n对象：${target}\n故事：${story}\n金句：${core_msg}`;
+
+        var textarea = document.createElement("textarea");
+        textarea.value = text;
+        textarea.style.position = "fixed";
+        textarea.style.opacity = "0";
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        try {
+            document.execCommand('copy');
+            alert("✅ 已复制！\n请直接去微信粘贴发给我。");
+        } catch (err) {
+            alert("❌ 复制失败，请手动截图。");
+        }
+        document.body.removeChild(textarea);
+    }
+</script>
+
+</body>
+</html>
